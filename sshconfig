@@ -1,0 +1,18 @@
+# To be stored in /home/$USER/.ssh/config
+Host *
+  ControlPath ~/.ssh/master-%l-%r@%h:%p
+  ControlMaster auto
+  ControlPersist 1
+Host hostbyproxy
+ HostName hostname
+ User username
+ Port port
+ TCPKeepAlive no
+ ServerAliveCountMax 6
+ ServerAliveInterval 20
+ ProxyCommand corkscrew proxyhost proxyport %h %p
+ # Forward: local port, remotehost:remoteport
+ LocalForward 6667 ircserver.example.com:6667
+# DynamicForward 1080
+ PermitLocalCommand yes
+ LocalCommand echo "Connected Successfully"
