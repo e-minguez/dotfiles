@@ -97,5 +97,9 @@ gn()
     curl -s https://api.greynoise.io/v3/community/$1 | python -m json.tool
 }
 
+extractrpm()
+{
+    rpm2cpio $1 | cpio -idmv
+}
 
 eval "$(starship init bash)"
